@@ -82,7 +82,32 @@ public class TestQueue {
 		}
 
 	}
+	@Test
+	public void testQueuePush() throws Throwable {
+		File queueDir = TestUtils.createTempSubdir("test-queue");
+		final Queue queue = new Queue(queueDir.getPath(), "test-queue", 1000);
+		try {
+			int size = 30000;
+			String[] ss = new String[size];
+			for (int i = 0; i < 30000; i++) {
+				String s = Integer.toString(i);
+				ss[i]=s;
+				queue.push(s);
+			}
 
+			for (int i = 0; i < 30000; i++) {
+				String element = queue.poll();
+				if (!ss[i].equals(element)) {
+					throw new AssertionError("Expected element " + i
+							+ ", but got " + element);
+				}
+			}
+			System.out.println(queue.size());
+		} finally {
+			queue.close();
+		}
+
+	}
 	@Test
 	public void testMultiThreadedPoll() throws Throwable {
 		File queueDir = TestUtils.createTempSubdir("test-queue");
