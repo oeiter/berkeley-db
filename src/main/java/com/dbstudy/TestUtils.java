@@ -1,4 +1,4 @@
-package org.exoplatform.berkeley;
+package com.dbstudy;
 
 import java.io.File;
 

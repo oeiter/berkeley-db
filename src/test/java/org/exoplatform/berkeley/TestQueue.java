@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Test;
 
 import com.dbstudy.Queue;
+import com.dbstudy.TestUtils;
 
 public class TestQueue {
 
