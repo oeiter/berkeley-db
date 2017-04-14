@@ -11,13 +11,13 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Test;
 
 import com.dbstudy.Queue;
-import com.dbstudy.TestUtils;
+import com.dbstudy.QueueUtil;
 
 public class TestQueue {
 
 	@Test
 	public void testCreateQueue() {
-		File queueDir = TestUtils.createTempSubdir("test-queue");
+		File queueDir = QueueUtil.createTempSubdir("test-queue");
 		Queue queue = new Queue(queueDir.getPath(), "test-queue", 3);
 		try {
 			assert Arrays.asList(queueDir.listFiles()).contains(
@@ -29,7 +29,7 @@ public class TestQueue {
 
 	@Test
 	public void testPush() throws Throwable {
-		File queueDir = TestUtils.createTempSubdir("test-queue");
+		File queueDir = QueueUtil.createTempSubdir("test-queue");
 		Queue queue = new Queue(queueDir.getPath(), "test-queue", 3);
 		try {
 			queue.push("1");
@@ -44,7 +44,7 @@ public class TestQueue {
 
 	@Test
 	public void testQueueSurviveReopen() throws Throwable {
-		File queueDir = TestUtils.createTempSubdir("test-queue");
+		File queueDir = QueueUtil.createTempSubdir("test-queue");
 		Queue queue = new Queue(queueDir.getPath(), "test-queue", 3);
 		try {
 			queue.push("5");
@@ -64,7 +64,7 @@ public class TestQueue {
 
 	@Test
 	public void testQueuePushOrder() throws Throwable {
-		File queueDir = TestUtils.createTempSubdir("test-queue");
+		File queueDir = QueueUtil.createTempSubdir("test-queue");
 		final Queue queue = new Queue(queueDir.getPath(), "test-queue", 1000);
 		try {
 			for (int i = 0; i < 300; i++) {
@@ -85,7 +85,7 @@ public class TestQueue {
 	}
 	@Test
 	public void testQueuePush() throws Throwable {
-		File queueDir = TestUtils.createTempSubdir("test-queue");
+		File queueDir = QueueUtil.createTempSubdir("test-queue");
 		final Queue queue = new Queue(queueDir.getPath(), "test-queue", 1000);
 		try {
 			int size = 30000;
@@ -111,7 +111,7 @@ public class TestQueue {
 	}
 	@Test
 	public void testMultiThreadedPoll() throws Throwable {
-		File queueDir = TestUtils.createTempSubdir("test-queue");
+		File queueDir = QueueUtil.createTempSubdir("test-queue");
 		final Queue queue = new Queue(queueDir.getPath(), "test-queue", 3);
 		try {
 			int threadCount = 20;
@@ -151,7 +151,7 @@ public class TestQueue {
 
 	@Test
 	public void testMultiThreadedPush() throws Throwable {
-		File queueDir = TestUtils.createTempSubdir("test-queue");
+		File queueDir = QueueUtil.createTempSubdir("test-queue");
 		final Queue queue = new Queue(queueDir.getPath(), "test-queue", 3);
 		try {
 			int threadCount = 20;
